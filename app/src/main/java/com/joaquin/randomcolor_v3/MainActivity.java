@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -12,29 +14,43 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "TAG: ";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int answer;
 
         TextView view = findViewById(R.id.textView);
+        RadioGroup rg = findViewById(R.id.radioGroup);
+        RadioButton checkedRadioButton = (RadioButton) rg.findViewById(rg.getCheckedRadioButtonId());
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                RadioButton checkedRadioButton = (RadioButton) radioGroup.findViewById(id);
+                Log.i(TAG, "checkedRadioButton " + checkedRadioButton.getId());
+            }
+        });
+
+        int answer;
         answer = generateRandomColor(view);
-        Log.i(TAG, "correct answer is: " + answer);
+
+//        Log.i(TAG, "correct answer is: " + answer);
     }
 
     public int generateRandomColor(View view) {
         Random random = new Random();
         int rand = random.nextInt(3);
-        int correctResponse=0;
+        int correctResponse = 0;
         switch (rand) {
             case 0:
                 view.setBackgroundResource(R.color.red);
-       correctResponse = R.color.red;
+                correctResponse = R.color.red;
                 break;
             case 1:
                 view.setBackgroundResource(R.color.green);
-                correctResponse = R.color.green;                break;
+                correctResponse = R.color.green;
+                break;
             case 2:
                 view.setBackgroundResource(R.color.blue);
                 correctResponse = R.color.blue;
@@ -47,13 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void handleUserSelection(View view) {
-//        Log.i(TAG, "R.id is " + R.id.radio_red);
-//        Log.i(TAG, "R.color is " + R.color.red);
-
-    }
-
-    ;
+//    public void handleUserSelection(View view) {
+////        Log.i(TAG, "R.id is " + R.id.radio_red);
+////        Log.i(TAG, "R.color is " + R.color.red);
+////        Log.i(TAG, "the answer is:" + answer);
+//
+//
+//    }
+//
+//    ;
 
 
 }
