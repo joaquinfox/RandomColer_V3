@@ -2,12 +2,14 @@ package com.joaquin.randomcolor_v3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -24,18 +26,21 @@ public class MainActivity extends AppCompatActivity {
         RadioGroup rg = findViewById(R.id.radioGroup);
         RadioButton checkedRadioButton = (RadioButton) rg.findViewById(rg.getCheckedRadioButtonId());
 
+        int answer;
+        answer = generateRandomColor(view);
+
+        // Event listener on radio group and child buttons
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 RadioButton checkedRadioButton = (RadioButton) radioGroup.findViewById(id);
-                Log.i(TAG, "checkedRadioButton " + checkedRadioButton.getId());
+//
+                evaluateAnswer(answer, checkedRadioButton.getId());
+
             }
         });
 
-        int answer;
-        answer = generateRandomColor(view);
 
-//        Log.i(TAG, "correct answer is: " + answer);
     }
 
     public int generateRandomColor(View view) {
@@ -45,16 +50,18 @@ public class MainActivity extends AppCompatActivity {
         switch (rand) {
             case 0:
                 view.setBackgroundResource(R.color.red);
-                correctResponse = R.color.red;
+                correctResponse = 2131231214;
                 break;
             case 1:
                 view.setBackgroundResource(R.color.green);
-                correctResponse = R.color.green;
+                correctResponse = 2131231213;
                 break;
             case 2:
                 view.setBackgroundResource(R.color.blue);
-                correctResponse = R.color.blue;
+                correctResponse = 2131231212;
+
                 break;
+
             default:
                 Log.d(TAG, "Something horrible has happened");
         }
@@ -63,15 +70,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public void handleUserSelection(View view) {
-////        Log.i(TAG, "R.id is " + R.id.radio_red);
-////        Log.i(TAG, "R.color is " + R.color.red);
-////        Log.i(TAG, "the answer is:" + answer);
-//
-//
-//    }
-//
-//    ;
+    public void evaluateAnswer(int correctAnswer, int userAnswer) {
+        Context context = getApplicationContext();
+        CharSequence ifCorrect = "Yowza!";
+        CharSequence ifWrong = "Nawwza!";
+        int duration = Toast.LENGTH_SHORT;
+        if (correctAnswer == userAnswer) {
+            Toast.makeText(context, ifCorrect, duration).show();
+
+        } else {
+            Toast.makeText(context, ifWrong, duration).show();
+        }
+
+    }
+
 
 
 }
