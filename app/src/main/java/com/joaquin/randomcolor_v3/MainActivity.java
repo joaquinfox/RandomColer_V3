@@ -16,38 +16,44 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        int answer;
 
         TextView view = findViewById(R.id.textView);
-        generateRandomColor(view);
+        answer = generateRandomColor(view);
+        Log.i(TAG, "correct answer is: " + answer);
     }
 
-    public void generateRandomColor(View view) {
+    public int generateRandomColor(View view) {
         Random random = new Random();
         int rand = random.nextInt(3);
+        int correctResponse=0;
         switch (rand) {
             case 0:
-                Log.i(TAG, "This will be red");
                 view.setBackgroundResource(R.color.red);
+       correctResponse = R.color.red;
                 break;
             case 1:
-                Log.i(TAG, "This will be green");
                 view.setBackgroundResource(R.color.green);
-
-
-                break;
+                correctResponse = R.color.green;                break;
             case 2:
-                Log.i(TAG, "This will be blue");
                 view.setBackgroundResource(R.color.blue);
-
-
+                correctResponse = R.color.blue;
                 break;
             default:
                 Log.d(TAG, "Something horrible has happened");
         }
 
-//        Log.i(TAG, "Hey! The number is:" +rand);
+        return correctResponse;
 
     }
+
+    public void handleUserSelection(View view) {
+//        Log.i(TAG, "R.id is " + R.id.radio_red);
+//        Log.i(TAG, "R.color is " + R.color.red);
+
+    }
+
+    ;
 
 
 }

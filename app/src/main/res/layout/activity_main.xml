@@ -27,22 +27,26 @@
         >
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radio_red"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="Red"
+            android:onClick="handleUserSelection"
+            />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radio_green"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="Green"
+            android:onClick="handleUserSelection"/>
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radio_blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="Blue"
+            android:onClick="handleUserSelection"/>
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
